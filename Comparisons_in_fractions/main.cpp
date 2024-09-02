@@ -7,52 +7,84 @@
 
 #include <iostream>
 
-class Fraction {
+class Fraction
+{
 private:
     int numerator_;
     int denominator_;
 
-    void normalize() {
-        if (denominator_ < 0) {
-            numerator_ = -numerator_;
-            denominator_ = -denominator_;
-        }
-    }
-
 public:
-    Fraction(int numerator, int denominator) : numerator_(numerator), denominator_(denominator) {
-        if (denominator == 0) {
-            throw std::invalid_argument("Знаменатель не может быть равен нулю.");
+    Fraction(int numerator, int denominator)
+    {
+        numerator_ = numerator;
+        denominator_ = denominator;
+    }
+
+    bool operator == (Fraction right)
+    {
+        if (numerator_ == right.numerator_ && denominator_ == right.denominator_)
+        {
+            return 1;
         }
-        normalize();
+        return 0;
     }
 
-    bool operator == (const Fraction& other) const {
-        return (numerator_ * other.denominator_ == denominator_ * other.numerator_);
+    bool operator != (Fraction right)
+    {
+        if (numerator_ != right.numerator_ && denominator_ != right.denominator_)
+        {
+            return 1;
+        }
+        return 0;
     }
 
-    bool operator != (const Fraction& other) const {
-        return !(*this == other);
+    bool operator < (Fraction right)
+    {
+        double ResF1 = static_cast<double>(numerator_) / static_cast<double>(denominator_);
+        double ResF2 = static_cast<double>(right.numerator_) / static_cast<double>(right.denominator_);
+        if (ResF1 < ResF2)
+        {
+            return 1;
+        }
+        return 0;
     }
 
-    bool operator < (const Fraction& other) const {
-        return (numerator_ * other.denominator_ < denominator_ * other.numerator_);
+    bool operator <= (Fraction right)
+    {
+        double ResF1 = static_cast<double>(numerator_) / static_cast<double>(denominator_);
+        double ResF2 = static_cast<double>(right.numerator_) / static_cast<double>(right.denominator_);
+        if (ResF1 <= ResF2)
+        {
+            return 1;
+        }
+        return 0;
     }
 
-    bool operator > (const Fraction& other) const {
-        return other < *this;
+    bool operator > (Fraction right)
+    {
+        double ResF1 = static_cast<double>(numerator_) / static_cast<double>(denominator_);
+        double ResF2 = static_cast<double>(right.numerator_) / static_cast<double>(right.denominator_);
+        if (ResF1 > ResF2)
+        {
+            return 1;
+        }
+        return 0;
     }
 
-    bool operator <= (const Fraction& other) const {
-        return !(*this > other);
-    }
-
-    bool operator >= (const Fraction& other) const {
-        return !(*this < other);
+    bool operator >= (Fraction right)
+    {
+        double ResF1 = static_cast<double>(numerator_) / static_cast<double>(denominator_);
+        double ResF2 = static_cast<double>(right.numerator_) / static_cast<double>(right.denominator_);
+        if (ResF1 >= ResF2)
+        {
+            return 1;
+        }
+        return 0;
     }
 };
 
-int main() {
+int main()
+{
     Fraction f1(4, 3);
     Fraction f2(6, 11);
 
@@ -62,6 +94,5 @@ int main() {
     std::cout << "f1" << ((f1 > f2) ? " > " : " not > ") << "f2" << '\n';
     std::cout << "f1" << ((f1 <= f2) ? " <= " : " not <= ") << "f2" << '\n';
     std::cout << "f1" << ((f1 >= f2) ? " >= " : " not >= ") << "f2" << '\n';
-    
     return 0;
 }
