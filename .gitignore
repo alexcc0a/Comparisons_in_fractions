@@ -1,0 +1,42 @@
+# Xcode
+.DS_Store
+*.xcworkspace
+!*.xccheckout
+!*.xcscmblueprint
+*.xcuserstate
+*.moved-aside
+*.xcuserdatad
+*.swp
+*.lock
+profile
+DerivedData/
+.idea/
+Pods/
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+*.xcsettings
+
+# C++ Specific
+*.o
+*.obj
+*.gch
+*.pch
+*.lib
+*.a
+*.la
+*.lo
+*.exe
+*.out
+*.app
+*.dSYM/
+*.debug
+*.so
+*.dylib
+
+# Xcode Specific
+*.xcodeproj/project.xcworkspace/
+*.xcodeproj/xcuserdata/
+*.xcscmblueprint
+build/
